@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -64,13 +65,22 @@ namespace prjMailManager
                     FolderNameList.Add(tmpSubjectString);
 
                     //tmpSubjectString.Split('-').Length == 2 代表此資料夾沒有主旨
-                    if (tmpSubjectString.Split('-').Length == 2)
+                    //if (tmpSubjectString.Split('-').Length == 2)
+                    //{
+                    //    SubjectList.Add("");
+                    //}
+                    //else
+                    //{
+                    //    SubjectList.Add(tmpSubjectString.Split('-')[2]);
+                    //}
+                    if (tmpSubjectString.Length != 15)
                     {
-                        SubjectList.Add("");
+                        //Trace.WriteLine(tmpSubjectString.Substring(16));
+                        SubjectList.Add(tmpSubjectString.Substring(16));
                     }
                     else
                     {
-                        SubjectList.Add(tmpSubjectString.Split('-')[2]);
+                        SubjectList.Add("");
                     }
                     SendDateList.Add(tmpSendDateString);
 
@@ -82,12 +92,12 @@ namespace prjMailManager
             catch (Exception ex)
             {
                 MessageBox.Show($"index {j} : {tmpPath} ");
-                MessageBox.Show($"err_tmpSubjectArray.Length  : {err_tmpSubjectArray.Length} ");
-                foreach (var item in err_tmpSubjectArray)
-                {
-                    MessageBox.Show($"item  : {item} ");
-                }
-                MessageBox.Show($"err_tmpSubjectArray[4]  : {err_tmpSubjectArray[4]} ");
+                //MessageBox.Show($"err_tmpSubjectArray.Length  : {err_tmpSubjectArray.Length} ");
+                //foreach (var item in err_tmpSubjectArray)
+                //{
+                //    MessageBox.Show($"item  : {item} ");
+                //}
+                //MessageBox.Show($"err_tmpSubjectArray[4]  : {err_tmpSubjectArray[4]} ");
                 MessageBox.Show(ex.Message);
             }
 
@@ -265,6 +275,7 @@ namespace prjMailManager
 
         private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            SubjectForCopy.Text = tmpMailContent.Subject;
             showHtml(readTxt(tmpMailContent.FolderPath));
             tmpMailContent = null;
 

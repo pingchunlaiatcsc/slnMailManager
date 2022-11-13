@@ -62,14 +62,11 @@
                     Margin="10,10,10,10"
                     Name="txtFilter" TextChanged="txtFilter_TextChanged"/>
                             <TextBlock Width="300"></TextBlock>
-                            <Button x:Name="showChb" Content="Delete" Click="Button_Click" Width="80">
+                            <Button x:Name="showChb" Content="Move" Click="Button_Click" Width="80">
                             </Button>
                             <TextBlock Width="30"></TextBlock>
 
                         </WrapPanel>
-
-
-
                         <ScrollViewer>
                             <ListView x:Name="listViewMails" Grid.Row="2" Margin="10" MaxHeight="200" Width="630">
                                 <ListView.Resources>
@@ -91,8 +88,15 @@
                                         <GridViewColumn Width="300">
                                             <TextBlock Text="Subject"></TextBlock>
                                             <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock  Text="{Binding Subject}" Cursor="Hand" Foreground="Blue" TextDecorations="Underline"  MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"></TextBlock>
+                                                <DataTemplate >
+                                                    <TextBlock  Text="{Binding Subject}" Cursor="Hand" Foreground="Blue" TextDecorations="Underline" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" ></TextBlock>
+                                                    <!--<TextBox Text="{Binding Subject}" Cursor="Hand" Foreground="Blue" TextDecorations="Underline"  MouseLeftButtonUp="TextBlock_MouseLeftButtonUp" ></TextBox>-->
+                                                    <!--<TextBox Background="Transparent"
+                                                         BorderThickness="0"
+                                                         Text="{Binding Subject, Mode=OneWay}"
+                                                         IsReadOnly="True"
+                                                         TextWrapping="Wrap" 
+                                                         MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"/>-->
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -123,6 +127,9 @@
                                 </ListView.ItemContainerStyle>
                             </ListView>
                         </ScrollViewer>
+                        <TextBox x:Name="SubjectForCopy">
+
+                        </TextBox>
                         <Border BorderThickness="1" BorderBrush="Blue" Margin="10 10 10 10" CornerRadius="10">
                             <WebBrowser Height="500" Name="myWebBrowser" ></WebBrowser>
                         </Border>
@@ -157,7 +164,7 @@
                         <ListView x:Name="FolderList">
                             <ListView.View>
                                 <GridView>
-                                    
+
                                 </GridView>
                             </ListView.View>
                         </ListView>
